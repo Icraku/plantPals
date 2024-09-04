@@ -69,32 +69,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### horizontal scrollbar
-<div>
-      <Typography variant="h6" mb="20px">
-        Indoor Plants
-      </Typography>
-      <Box display="flex" flexDirection="row">
-        {uniqueIndoorPlants.map((plant, index) => (
-          <Box key={index} m="0 40px">
-            <div>{plant.common_name}</div>
-            {/* <div>{plant.scientific_name}</div> */}
-            {/* Add more properties as needed */}
-          </Box>
-        ))}
-              <PlantList plants={indoorPlants} title="Indoor Plants" />
-      </Box>
-      <Typography variant="h6" mt="20px" mb="20px">
-        Outdoor Plants
-      </Typography>
-      <Box display="flex" flexDirection="row">
-        {uniqueOutdoorPlants.map((plant, index) => (
-          <Box key={index} m="0 40px">
-            <div>{plant.common_name}</div>
-            {/* <div>{plant.scientific_name}</div> */}
-            {/* Add more properties as needed */}
-          </Box>
-        ))}
-              <PlantList plants={outdoorPlants} title="Outdoor Plants" />
-      </Box>
-    </div>
+
