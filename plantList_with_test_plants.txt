@@ -1,0 +1,137 @@
+import React, { useContext } from 'react';
+import { Box, Typography } from '@mui/material';
+import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+
+import RightArrowIcon from '../assets/icons/right-arrow.png';
+import LeftArrowIcon from '../assets/icons/left-arrow.png';
+import plant from '../assets/icons/plant.png';
+
+/* Arrow functionality */
+const LeftArrow = () => {
+  const { scrollPrev } = useContext(VisibilityContext);
+
+  return (
+    <Typography onClick={() => scrollPrev()} className='right-arrow'>
+      <img src={LeftArrowIcon} alt='left-arrow' />
+    </Typography>
+  );
+};
+
+const RightArrow = () => {
+  const { scrollNext } = useContext(VisibilityContext);
+
+  return (
+    <Typography onClick={() => scrollNext()} className='left-arrow'>
+      <img src={RightArrowIcon} alt='right-arrow' />
+    </Typography>
+  );
+};
+
+const PlantList = () => {
+  const plants = [
+    { common_name: 'Aloe1', scientific_name: 'Aloe vera', image_url: '../assets/icons/plant.png', description: 'Aloe is a succulent plant speciesof the genus Aloe.', origin: 'North Africa', care: {watering: 'Water every 3 weeks', sunlight: 'Indirect sunlight,'}, },
+    { common_name: 'Aloe2', scientific_name: 'Aloe vera', image_url: '../assets/icons/plant.png', description: 'Aloe is a succulent plant speciesof the genus Aloe.', origin: 'North Africa', care: {watering: 'Water every 3 weeks', sunlight: 'Indirect sunlight,'}, },
+    { common_name: 'Aloe3', scientific_name: 'Aloe vera', image_url: '../assets/icons/plant.png', description: 'Aloe is a succulent plant speciesof the genus Aloe.', origin: 'North Africa', care: {watering: 'Water every 3 weeks', sunlight: 'Indirect sunlight,'}, },
+    { common_name: 'Aloe4', scientific_name: 'Aloe vera', image_url: '../assets/icons/plant.png', description: 'Aloe is a succulent plant speciesof the genus Aloe.', origin: 'North Africa', care: {watering: 'Water every 3 weeks', sunlight: 'Indirect sunlight,'}, },
+    { common_name: 'Aloe5', scientific_name: 'Aloe vera', image_url: '../assets/icons/plant.png', description: 'Aloe is a succulent plant speciesof the genus Aloe.', origin: 'North Africa', care: {watering: 'Water every 3 weeks', sunlight: 'Indirect sunlight,'}, },
+    { common_name: 'Aloe6', scientific_name: 'Aloe vera', image_url: '../assets/icons/plant.png', description: 'Aloe is a succulent plant speciesof the genus Aloe.', origin: 'North Africa', care: {watering: 'Water every 3 weeks', sunlight: 'Indirect sunlight,'}, },
+    { common_name: 'Aloe7', scientific_name: 'Aloe vera', image_url: '../assets/icons/plant.png', description: 'Aloe is a succulent plant speciesof the genus Aloe.', origin: 'North Africa', care: {watering: 'Water every 3 weeks', sunlight: 'Indirect sunlight,'}, },
+    
+  ];
+
+  const cardStyle = {
+    position: 'relative',
+    /* display: 'block',
+    height: '100%', */
+    borderRadius: '47px',
+    overflow: 'hidden',
+    textDecoration: 'none',
+    cursor: 'pointer',
+    margin: '0 20px',
+    width: 200,
+    height: 150,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'white 0.3s ease-in-out',
+    '&:hover': {
+      background: 'darkgreen',
+    },
+    '&:hover .card__header': {
+      transform: 'translateY(-100%)',
+    },
+    '&:hover .card__overlay': {
+      transform: 'translateY(0)',
+    },
+  };
+
+  const headerOverlayStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+    borderRadius: '40px',
+    backgroundColor: 'darkgreen',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    transition: 'transform 0.3s ease-in-out',
+  };
+
+  return (
+    <>
+      <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+        {plants.map((plant, index) => (
+          <Box
+            key={index}
+            sx={{
+              ...cardStyle,
+              backgroundColor: 'darkgreen',
+            }}
+            onClick={() => {
+              console.log(`Clicked on ${plant.common_name}`);
+              window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
+            }}
+        >
+          <Box
+            className="card__header"
+            sx={{
+              ...headerOverlayStyle,
+              transform: 'translateY(0)',
+            }}
+          >
+            <Typography variant="h6" sx={{ color: '#fff' }}>
+              {plant.common_name}
+            </Typography>
+          </Box>
+          <Box
+            className="card__overlay"
+            sx={{
+              ...headerOverlayStyle,
+              transform: 'translateY(100%)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              backgroundColor: 'lightgreen',
+            }}
+          >
+            <Typography variant="h6" sx={{ color: 'darkgreen' }}>
+              {plant.scientific_name}
+            </Typography>
+            <Typography variant="caption" sx={{ color: 'darkgreen' }}>
+              (Scientific Name)
+            </Typography>
+            <Typography variant="caption" sx={{ color: 'darkgreen' }}>
+              Learn More...
+            </Typography>
+          </Box>
+          </Box>
+        ))}
+      </ScrollMenu>
+    </>
+  );
+};
+
+export default PlantList;

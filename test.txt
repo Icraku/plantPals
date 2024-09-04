@@ -1,0 +1,311 @@
+import React, { useState, useContext } from 'react';
+import { Box, Typography, Button } from '@mui/material';
+import Modal from './Modal';
+import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+import RightArrowIcon from '../assets/icons/move-right.png';
+import LeftArrowIcon from '../assets/icons/move-left.png';
+
+const getUniquePlants = (plants) => {
+  const seen = new Set();
+  return plants.filter((plant) => {
+    const isDuplicate = seen.has(plant.common_name);
+    seen.add(plant.common_name);
+    return !isDuplicate;
+  });
+};
+
+/* Arrow functionality */
+const LeftArrow = () => {
+  const { scrollPrev } = useContext(VisibilityContext);
+
+  return (
+    <Typography onClick={() => scrollPrev()} className='right-arrow'>
+      <img src={LeftArrowIcon} alt='left-arrow' />
+    </Typography>
+  );
+};
+
+const RightArrow = () => {
+  const { scrollNext } = useContext(VisibilityContext);
+
+  return (
+    <Typography onClick={() => scrollNext()} className='left-arrow'>
+      <img src={RightArrowIcon} alt='right-arrow' />
+    </Typography>
+  );
+};
+
+const PlantList = ({ plants = [], title }) => {
+  const [showAll, setShowAll] = useState(false);
+  const uniquePlants = getUniquePlants(plants);
+  const displayedPlants = showAll ? uniquePlants : uniquePlants.slice(0, 10);
+
+  const [selectedPlant, setSelectedPlant] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = (plant) => {
+    setSelectedPlant(plant);
+    setShowModal(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedPlant(null);
+    setShowModal(false);
+    document.body.style.overflow = "auto";
+  };
+
+  const cardStyle = {
+    position: 'relative',
+    borderRadius: '47px',
+    overflow: 'hidden',
+    textDecoration: 'none',
+    cursor: 'pointer',
+    margin: '0 20px',
+    width: 200,
+    height: 150,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: '0.4s ease-in-out',
+    '&:hover': {
+      background: 'darkgreen',
+    },
+    '&:hover .card__header': {
+      transform: 'translateY(-100%)',
+    },
+    '&:hover .card__overlay': {
+      transform: 'translateY(0)',
+    },
+  };
+
+  const headerOverlayStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+    borderRadius: '40px',
+    backgroundColor: 'darkgreen',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    transition: 'transform 0.5s ease-in-out',
+  };
+
+  return (
+    <>
+      <Modal
+        open={showModal}
+        onClose={closeModal}
+        plant={selectedPlant}
+      />
+      <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow}>
+        {displayedPlants.map((plant, index) => (
+          <Box key={index}
+            sx={{
+              ...cardStyle,
+              backgroundColor: 'darkgreen',
+            }}
+            onClick={() => openModal(plant)} // Open modal with plant data
+          >
+            <Box
+              className="card__header"
+              sx={{
+                ...headerOverlayStyle,
+                transform: 'translateY(0)',
+              }}
+            >
+              <Typography variant="h6" sx={{ color: '#fff' }}>{plant.common_name}</Typography>
+            </Box>
+            <Box
+              className="card__overlay"
+              sx={{
+                ...headerOverlayStyle,
+                transform: 'translateY(100%)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                backgroundColor: 'lightgreen',
+              }}
+            >
+              <Typography variant="h6" sx={{ color: 'darkgreen' }}>{plant.scientific_name}</Typography>
+              <Typography variant="caption" sx={{ color: 'darkgreen' }}>
+                (Scientific Name)
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'darkgreen' }}>
+                Click to learn more
+              </Typography>
+            </Box>
+          </Box>
+        ))}
+      </ScrollMenu>
+      {uniquePlants.length > 10 && !showAll && (
+        <Button onClick={() => setShowAll(true)} sx={{
+          mt: '40px',
+          backgroundColor: "lightgreen",
+          color: 'darkgreen',
+          position: 'absolute',
+          right: '0'
+        }}>
+          Show More
+        </Button>
+      )}
+      {showAll && (
+        <Button onClick={() => setShowAll(false)} sx={{
+          mt: '40px',
+          backgroundColor: "lightgreen",
+          color: 'darkgreen',
+          position: 'absolute',
+          right: '0'
+        }}>
+          Show Less
+        </Button>
+      )}
+    </>
+  );
+};
+
+export default PlantList;
+
+
+////////////////////////////////////////////////////////////7
+ACCORDION: expanded by default
+
+import * as React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+export default function AccordionExpandDefault() {
+  return (
+    <div>
+      <Accordion defaultExpanded>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <Typography>Expanded by default</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2-content"
+          id="panel2-header"
+        >
+          <Typography>Header</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>
+  );
+}
+
+..................ACCORDION: Controlled
+import * as React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+export default function ControlledAccordions() {
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
+  return (
+    <div>
+      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+            General settings
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
+            Aliquam eget maximus est, id dignissim quam.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>Users</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>
+            You are currently not an owner
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus,
+            varius pulvinar diam eros in elit. Pellentesque convallis laoreet
+            laoreet.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel3bh-content"
+          id="panel3bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+            Advanced settings
+          </Typography>
+          <Typography sx={{ color: 'text.secondary' }}>
+            Filtering has been entirely disabled for whole web server
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
+            amet egestas eros, vitae egestas augue. Duis vel est augue.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel4bh-content"
+          id="panel4bh-header"
+        >
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>Personal data</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
+            amet egestas eros, vitae egestas augue. Duis vel est augue.
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+    </div>
+  );
+}
