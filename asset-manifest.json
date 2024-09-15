@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/plantPals/static/css/main.e3210ffc.css",
-    "main.js": "/plantPals/static/js/main.b6d4739c.js",
+    "main.js": "/plantPals/static/js/main.a3f33b7f.js",
     "static/media/Hero.png": "/plantPals/static/media/Hero.6055cad1dd6e635f0a04.png",
     "static/media/Logo.png": "/plantPals/static/media/Logo.cf69065828e5d169870b.png",
     "static/media/plant.png": "/plantPals/static/media/plant.824a6250f479d200d6c4.png",
     "index.html": "/plantPals/index.html",
     "main.e3210ffc.css.map": "/plantPals/static/css/main.e3210ffc.css.map",
-    "main.b6d4739c.js.map": "/plantPals/static/js/main.b6d4739c.js.map"
+    "main.a3f33b7f.js.map": "/plantPals/static/js/main.a3f33b7f.js.map"
   },
   "entrypoints": [
     "static/css/main.e3210ffc.css",
-    "static/js/main.b6d4739c.js"
+    "static/js/main.a3f33b7f.js"
   ]
 }
