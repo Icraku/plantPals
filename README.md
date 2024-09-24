@@ -1,73 +1,71 @@
-# Getting Started with Create React App
+# PlantPals 🌿
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+**PlantPals** is a platform designed to help first-time plant parents nurture their plants with ease. The application, still in development, provides detailed plant care instructions, such as watering and sunlight requirements, along with interactive guides to help users keep their plants healthy. Users can also explore different plant species and customize their care journey.
 
-## Available Scripts
+**Deployed Site**: [PlantPals Live](https://plant-pals.vercel.app/)
 
-In the project directory, you can run:
+**Final Project Blog**: [Read the Blog Post](your-blog-link-here)
 
-### `npm start`
+**Author(s)**:
+- [Ivy Kutswa](https://www.linkedin.com/in/ivy-kutswa) - Project Lead
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
+To get started with **PlantPals** locally, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/plantPals.git
+   ```
 
-### `npm test`
+2. Navigate to the project directory:
+   ```bash
+   cd plantPals
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install the necessary dependencies:
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+4. Add your environment variables:
+   - Create a `.env` file at the root of your project.
+   - Add your API key for the plant database:
+     ```bash
+     REACT_APP_PLANT_PERENUAL_API_KEY=your_api_key_here
+     ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. Start the development server:
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
+Once you have the application running, you can explore the following features:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Search for plant species by their common or scientific name.
+- View detailed care instructions for each plant.
+- Interactive plant care guide with step-by-step instructions on watering and sunlight needs.
 
-### `npm run eject`
+## Contributing
+Contributions are welcome! If you would like to contribute to **PlantPals**, please follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit (`git commit -m 'Add new feature'`).
+4. Push your changes (`git push origin feature-branch`).
+5. Create a pull request.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Please make sure to follow the [contribution guidelines](TBD) before submitting a pull request.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Related Projects
+Here are some related projects that might inspire or complement **PlantPals**:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [Plant Parent by XYZ]
+- [Green Thumb Guide]
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Licensing
+This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this project, but please ensure that you give credit to the original authors due to copyright.
 
 ![homepage](https://github.com/user-attachments/assets/1482ddce-b1ff-4ba9-a1da-50d43b349127)
 ![plants](https://github.com/user-attachments/assets/f7861113-a6b3-4c09-8fb6-16d5ea82d0d2)
